@@ -36,8 +36,8 @@ resource "docker_container" "quiz_app" {
   restart = "always"
 
   ports {
-    internal = 5000
-    external = 5000
+    internal = 8080
+    external = 8080
   }
 
   lifecycle {
@@ -50,7 +50,7 @@ resource "docker_container" "quiz_app" {
 variable "app_port" {
   description = "Port to expose quiz app"
   type        = number
-  default     = 5000
+  default     = 8080
 }
 
 

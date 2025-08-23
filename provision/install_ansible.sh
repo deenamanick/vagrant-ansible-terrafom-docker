@@ -8,7 +8,7 @@ sudo add-apt-repository --yes --update ppa:ansible/ansible
 # Install Ansible
 sudo apt-get install -y ansible
 
-# SSH key for Ansible
+# # SSH key for Ansible
 sudo -u vagrant ssh-keygen -t rsa -b 2048 -N "" -f /home/vagrant/.ssh/id_rsa || true
 
 # Create sample inventory and config

@@ -56,7 +56,8 @@ for i in 1 2; do
   docker exec $cname bash -c "echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config"
 
   # Add the VM's pubkey into root's authorized_keys safely
-  echo "$pubkey" | docker exec -i $cname tee /root/.ssh/authorized_keys > /dev/null
+ # echo "$pubkey" | docker exec -i $cname tee /root/.ssh/authorized_keys > /dev/null
+  echo "$pubkey"| docker exec -i $cname bash -c 'tee /root/.ssh/authorized_keys' > /dev/null
 
   # Fix SSH perms
   docker exec $cname chmod 700 /root/.ssh
