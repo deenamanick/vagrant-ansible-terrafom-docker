@@ -29,17 +29,23 @@ The goal is to give students a **hands-on CI/CD experience** where pushing code 
 ## 🔹 How to use It
 
 1. **Fork the repository**
+
+   Login to github first. If you dont have the account, create the one by clicking on Sign up Button.
+
+   <img width="1835" height="719" alt="image" src="https://github.com/user-attachments/assets/0f1db4ce-3a4f-49a3-a2b6-b4d7fc267995" />
+
+    
    Fork this repo:
    👉 [https://github.com/deenamanick/vagrant-ansible-terrafom-docker.git](https://github.com/deenamanick/vagrant-ansible-terrafom-docker.git)
 
-2. **Clone your fork**
+3. **Clone your fork**
 
    ```bash
    git clone https://github.com/<your-username>/vagrant-ansible-terrafom-docker.git
    cd vagrant-ansible-terrafom-docker
    ```
 
-3. **Start the VM**
+4. **Start the VM**
 
    ```bash
    vagrant up
@@ -47,7 +53,7 @@ The goal is to give students a **hands-on CI/CD experience** where pushing code 
 
    * VM provisions with Docker, Terraform, and Ansible.
 
-4. **login to the VM**
+5. **login to the VM**
 
    ```bash
    vagrant ssh
