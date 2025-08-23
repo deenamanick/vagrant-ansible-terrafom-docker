@@ -42,8 +42,13 @@ The goal is to give students a **hands-on CI/CD experience** where pushing code 
 
    ```bash
    git clone https://github.com/<your-username>/vagrant-ansible-terrafom-docker.git
-   cd vagrant-ansible-terrafom-docker
+   
    ```
+   ```bash
+   cd vagrant-ansible-terrafom-docker
+   
+   ```
+   
 
 4. **Start the VM**
 
