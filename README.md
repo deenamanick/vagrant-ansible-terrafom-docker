@@ -601,6 +601,9 @@ export GITHUB_PAT="<token with repo+workflow scopes>"   # or
 export RUNNER_TOKEN="<repo runner token>"
 ```
 
+Example
+export GITHUB_REP="deenamanick/vagrant-ansible-terrafom-docker"
+
 Run the Ansible playbook:
 
 ```bash
