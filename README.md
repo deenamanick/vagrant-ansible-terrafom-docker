@@ -21,6 +21,57 @@ The goal is to give students a **hands-on CI/CD experience** where pushing code 
 
 ---
 
+## 🔹 Self-Hosted GitHub Runner (Docker inside VM)
+
+This repo can run a **self-hosted GitHub Actions runner** inside the Vagrant VM using Docker.
+
+### 1) Create `.env`
+
+Copy the sample and fill values:
+
+```bash
+cp .env.example .env
+```
+
+Set at least:
+
+```bash
+GITHUB_REPO=owner/repo
+RUNNER_TOKEN=...   # or set GITHUB_PAT instead
+```
+
+Notes:
+
+- **Recommended**: use `RUNNER_TOKEN` (short-lived registration token from GitHub UI).
+- Alternatively set `GITHUB_PAT` (the runner container will request the registration token automatically).
+
+### 2) Bring up the VM
+
+```bash
+vagrant up
+```
+
+This installs Docker and starts the runner container (`gha-runner`) automatically.
+
+### 3) Check runner logs
+
+```bash
+vagrant ssh
+docker logs -f gha-runner
+```
+
+If registration is successful, the runner should appear in GitHub under:
+
+- Repo: `Settings` -> `Actions` -> `Runners`
+
+### 4) Restart runner after changing `.env`
+
+```bash
+vagrant provision --provision-with runner
+```
+
+---
+
 ## 🔹 How to use It
 
 1. **Fork the repository**
