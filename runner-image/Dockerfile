@@ -13,7 +13,18 @@ ENV DEBIAN_FRONTEND=noninteractive \
 
 RUN apt-get update -y && apt-get install -y \
     curl ca-certificates jq tar git gnupg unzip \
+    lsb-release \
     && rm -rf /var/lib/apt/lists/*
+
+RUN set -eux; \
+  mkdir -p /etc/apt/keyrings; \
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg; \
+  chmod a+r /etc/apt/keyrings/docker.gpg; \
+  echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo $VERSION_CODENAME) stable" > /etc/apt/sources.list.d/docker.list; \
+  apt-get update -y; \
+  apt-get install -y docker-ce-cli; \
+  rm -rf /var/lib/apt/lists/*; \
+  docker --version
 
 # Install Node.js 20 (for GitHub JavaScript actions like checkout/setup-terraform)
 RUN set -eux; \
@@ -26,23 +37,6 @@ RUN set -eux; \
   apt-get update -y; \
   apt-get install -y nodejs; \
   node -v; npm -v
-
-## Install Terraform (pinned) so jobs don’t need network
-RUN set -eux; \
-  TF_VERSION=1.6.6; \
-  dpkg_arch="$(dpkg --print-architecture)"; \
-  case "$dpkg_arch" in \
-    amd64) tf_arch="linux_amd64" ;; \
-    arm64) tf_arch="linux_arm64" ;; \
-    armhf) tf_arch="linux_arm" ;; \
-    *) echo "Unsupported architecture for Terraform: $dpkg_arch" >&2; exit 1 ;; \
-  esac; \
-  url="https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_${tf_arch}.zip"; \
-  echo "Downloading $url"; \
-  curl -fsSL -o /tmp/terraform.zip "$url"; \
-  unzip -o /tmp/terraform.zip -d /usr/local/bin; \
-  rm -f /tmp/terraform.zip; \
-  terraform -version
 
 WORKDIR /opt/actions-runner
 
