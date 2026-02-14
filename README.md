@@ -2,6 +2,8 @@
 
 ## 🚀 Value Added Course – DevOps Lab
 
+this is a test line.
+
 This project sets up a complete **DevOps lab environment** for students using **Vagrant, Docker, Terraform, Ansible, Flask, and GitHub Actions**.
 
 The goal is to give students a **hands-on CI/CD experience** where pushing code automatically deploys an application inside a provisioned VM.
